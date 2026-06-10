@@ -1,0 +1,13 @@
+{
+  "name": "@portfolio/tailwind-config",
+  "private": true,
+  "version": "0.0.0",
+  "license": "MIT",
+  "exports": {
+    ".": "./tailwind.config.ts",
+    "./globals.css": "./globals.css"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4"
+  }
+}
