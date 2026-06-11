@@ -6,12 +6,12 @@ import { ArrowUpRight, Shield, Bug, CreditCard, Users, Activity, Layers } from "
 import { GithubIcon } from "@/components/icons";
 
 const projectUrls: Record<string, string> = {
-  tracker: process.env.NEXT_PUBLIC_TRACKER_URL || "/projects/tracker",
-  snip: process.env.NEXT_PUBLIC_SNIP_URL || "/projects/snip",
-  muse: process.env.NEXT_PUBLIC_MUSE_URL || "/projects/muse",
-  pulse: process.env.NEXT_PUBLIC_PULSE_URL || "/projects/pulse",
-  bazaar: process.env.NEXT_PUBLIC_BAZAAR_URL || "/projects/bazaar",
-  sync: process.env.NEXT_PUBLIC_SYNC_URL || "/projects/sync",
+  tracker: process.env.NEXT_PUBLIC_TRACKER_URL || "#",
+  snip: process.env.NEXT_PUBLIC_SNIP_URL || "#",
+  muse: process.env.NEXT_PUBLIC_MUSE_URL || "#",
+  pulse: process.env.NEXT_PUBLIC_PULSE_URL || "#",
+  bazaar: process.env.NEXT_PUBLIC_BAZAAR_URL || "#",
+  sync: process.env.NEXT_PUBLIC_SYNC_URL || "#",
 };
 
 const featuredProject = {
