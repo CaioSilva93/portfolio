@@ -4,10 +4,10 @@
 
 ## Pages
 
-- [Home](https://tracker.example.com/)
-- [Pricing](https://tracker.example.com/pricing)
-- [Sign Up](https://tracker.example.com/auth/signup)
-- [Login](https://tracker.example.com/auth/login)
+- [Home](/)
+- [Pricing](/pricing)
+- [Sign Up](/auth/signup)
+- [Login](/auth/login)
 
 ## Features
 

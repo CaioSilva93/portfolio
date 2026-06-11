@@ -9,7 +9,7 @@ export async function GET(
   const { searchParams } = new URL(request.url);
   const format = searchParams.get("format") || "svg";
 
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001";
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "";
   const shortUrl = `${baseUrl}/s/${slug}`;
 
   try {

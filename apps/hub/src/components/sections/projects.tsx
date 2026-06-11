@@ -5,13 +5,22 @@ import { useRef } from "react";
 import { ArrowUpRight, Shield, Bug, CreditCard, Users, Activity, Layers } from "lucide-react";
 import { GithubIcon } from "@/components/icons";
 
+const projectUrls: Record<string, string> = {
+  tracker: process.env.NEXT_PUBLIC_TRACKER_URL || "/projects/tracker",
+  snip: process.env.NEXT_PUBLIC_SNIP_URL || "/projects/snip",
+  muse: process.env.NEXT_PUBLIC_MUSE_URL || "/projects/muse",
+  pulse: process.env.NEXT_PUBLIC_PULSE_URL || "/projects/pulse",
+  bazaar: process.env.NEXT_PUBLIC_BAZAAR_URL || "/projects/bazaar",
+  sync: process.env.NEXT_PUBLIC_SYNC_URL || "/projects/sync",
+};
+
 const featuredProject = {
   name: "Tracker",
   title: "Complex SaaS Issue Tracker",
   description:
     "Multi-tenant SaaS with workspaces, projects, Stripe subscriptions, RBAC, and real-time activity feeds. 4 critical security vulnerabilities and 3 architectural warnings caught across 9 adversarial AI review cycles.",
   tech: ["Next.js 16", "Supabase", "Stripe", "Upstash Redis", "Tailwind CSS"],
-  link: "http://localhost:3006",
+  link: projectUrls.tracker,
   github: "#",
   stats: { critical: 4, warnings: 3, cycles: 9 },
 };
@@ -23,7 +32,7 @@ const projects = [
     description:
       "Link shortener with click analytics dashboard, QR code generation, Redis caching, and documented REST API.",
     tech: ["Next.js", "Supabase", "Redis", "Recharts"],
-    link: "http://localhost:3001",
+    link: projectUrls.snip,
     github: "#",
   },
   {
@@ -32,7 +41,7 @@ const projects = [
     description:
       "Marketing copy generator powered by Google Gemini with streaming responses, prompt templates, and generation history.",
     tech: ["Next.js", "Vercel AI SDK", "Gemini API", "Supabase"],
-    link: "http://localhost:3002",
+    link: projectUrls.muse,
     github: "#",
   },
   {
@@ -41,7 +50,7 @@ const projects = [
     description:
       "Real-time data visualization platform with auth, RBAC, team management, and exportable reports.",
     tech: ["Next.js", "Supabase", "Recharts", "Redis"],
-    link: "http://localhost:3003",
+    link: projectUrls.pulse,
     github: "#",
   },
   {
@@ -50,7 +59,7 @@ const projects = [
     description:
       "Full-featured online store with Stripe checkout, persistent cart, product catalog with SSR, and admin panel.",
     tech: ["Next.js", "Stripe", "Supabase", "Tailwind"],
-    link: "http://localhost:3004",
+    link: projectUrls.bazaar,
     github: "#",
   },
   {
@@ -59,7 +68,7 @@ const projects = [
     description:
       "Kanban board with real-time sync, drag-and-drop, presence indicators, and activity history.",
     tech: ["Next.js", "Supabase Realtime", "dnd-kit"],
-    link: "http://localhost:3005",
+    link: projectUrls.sync,
     github: "#",
   },
 ];

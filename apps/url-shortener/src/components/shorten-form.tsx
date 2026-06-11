@@ -108,7 +108,7 @@ export function ShortenForm({ onResult }: ShortenFormProps) {
             </label>
             <div className="flex items-center gap-2">
               <span className="font-[family-name:var(--font-mono)] text-sm text-[hsl(var(--muted-foreground))]">
-                {process.env.NEXT_PUBLIC_APP_URL || "short.caiosilva.dev"}/s/
+                {process.env.NEXT_PUBLIC_APP_URL || window.location.origin}/s/
               </span>
               <Input
                 id="customSlug"

@@ -4,11 +4,11 @@
 
 ## Pages
 
-- [Home](https://devstore.example.com/)
-- [Products](https://devstore.example.com/products)
-- [Cart](https://devstore.example.com/cart)
-- [Sign Up](https://devstore.example.com/auth/signup)
-- [Login](https://devstore.example.com/auth/login)
+- [Home](/)
+- [Products](/products)
+- [Cart](/cart)
+- [Sign Up](/auth/signup)
+- [Login](/auth/login)
 
 ## Features
 

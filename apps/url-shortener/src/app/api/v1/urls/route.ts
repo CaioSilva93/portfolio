@@ -68,7 +68,7 @@ export async function POST(request: Request) {
 
   await setCachedUrl(slug, url, null);
 
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001";
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "";
 
   return NextResponse.json({
     success: true,

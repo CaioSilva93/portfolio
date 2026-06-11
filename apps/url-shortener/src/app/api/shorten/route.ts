@@ -83,7 +83,7 @@ export async function POST(request: Request) {
 
   await setCachedUrl(slug, url, null);
 
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001";
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "";
   const shortUrl = `${baseUrl}/s/${slug}`;
 
   let qrSvg = "";

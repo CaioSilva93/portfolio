@@ -22,7 +22,7 @@ export function UrlList({ urls: initialUrls }: { urls: UrlItem[] }) {
   const [urls, setUrls] = useState(initialUrls);
   const [copiedSlug, setCopiedSlug] = useState<string | null>(null);
 
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001";
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "";
 
   async function handleCopy(slug: string) {
     await navigator.clipboard.writeText(`${baseUrl}/s/${slug}`);
