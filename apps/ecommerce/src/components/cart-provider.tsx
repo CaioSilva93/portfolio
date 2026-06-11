@@ -16,7 +16,7 @@ export interface CartItemWithProduct {
   product: Product;
 }
 
-interface CartContextValue {
+export interface CartContextValue {
   items: CartItemWithProduct[];
   cartItemCount: number;
   addItem: (product: Product, qty?: number) => Promise<void>;
@@ -219,7 +219,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       } else {
         const local = getLocalCart();
         const idx = local.findIndex((i) => i.productId === product.id);
-        if (idx >= 0) {
+        if (idx >= 0 && local[idx]) {
           local[idx].quantity += qty;
         } else {
           local.push({ productId: product.id, quantity: qty });
@@ -228,11 +228,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
         setItems((prev) => {
           const eIdx = prev.findIndex((i) => i.productId === product.id);
-          if (eIdx >= 0) {
+          if (eIdx >= 0 && prev[eIdx]) {
             const updated = [...prev];
             updated[eIdx] = {
-              ...updated[eIdx],
-              quantity: updated[eIdx].quantity + qty,
+              ...prev[eIdx],
+              quantity: prev[eIdx].quantity + qty,
             };
             return updated;
           }
@@ -277,7 +277,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       } else {
         const local = getLocalCart();
         const idx = local.findIndex((i) => i.productId === productId);
-        if (idx >= 0) {
+        if (idx >= 0 && local[idx]) {
           local[idx].quantity = qty;
           setLocalCart(local);
         }

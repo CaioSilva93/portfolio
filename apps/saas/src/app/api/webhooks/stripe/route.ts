@@ -35,7 +35,7 @@ export async function POST(request: Request) {
       const subscription = await stripe.subscriptions.retrieve(
         session.subscription as string
       );
-      const priceId = subscription.items.data[0]?.price.id;
+      const priceId = subscription.items.data[0]?.price.id ?? "";
       const plan = getPlanFromPrice(priceId);
 
       await supabase
@@ -65,7 +65,7 @@ export async function POST(request: Request) {
 
       if (!sub) break;
 
-      const priceId = subscription.items.data[0]?.price.id;
+      const priceId = subscription.items.data[0]?.price.id ?? "";
       const plan = getPlanFromPrice(priceId);
       const status = mapStripeStatus(subscription.status);
 

@@ -116,7 +116,7 @@ export function buildPromptFromForm(
 ): string {
   const lines = template.inputFields
     .filter((field) => formData[field.name]?.trim())
-    .map((field) => `${field.label}: ${formData[field.name].trim()}`);
+    .map((field) => `${field.label}: ${formData[field.name]!.trim()}`);
 
   return lines.join("\n");
 }

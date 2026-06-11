@@ -34,6 +34,7 @@ export default function Home() {
     <div className="min-h-screen overflow-hidden">
       <Navbar />
 
+      <main>
       {/* Background Effects */}
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute -left-[200px] top-[60px] h-[700px] w-[700px] rounded-full bg-[hsl(250,95%,55%)] opacity-[0.12] blur-[150px]" />
@@ -147,7 +148,7 @@ export default function Home() {
                     shrinkr.co/abc123
                   </span>
                 </div>
-                <button className="rounded-md p-1 text-[hsl(var(--muted-foreground))] transition-colors hover:text-[hsl(var(--foreground))]">
+                <button aria-label="Copy link" className="rounded-md p-1 text-[hsl(var(--muted-foreground))] transition-colors hover:text-[hsl(var(--foreground))]">
                   <Copy className="h-3.5 w-3.5" />
                 </button>
               </div>
@@ -164,7 +165,7 @@ export default function Home() {
             <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[hsl(var(--primary))]/10">
               <Zap className="h-5 w-5 text-[hsl(var(--primary))]" />
             </div>
-            <h3 className="font-semibold text-[hsl(var(--foreground))]">Fast</h3>
+            <h2 className="font-semibold text-[hsl(var(--foreground))]">Fast</h2>
             <p className="mt-1.5 text-sm text-[hsl(var(--muted-foreground))]">
               Shorten links instantly with global edge infrastructure.
             </p>
@@ -181,7 +182,7 @@ export default function Home() {
             <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[hsl(var(--primary))]/10">
               <BarChart3 className="h-5 w-5 text-[hsl(var(--primary))]" />
             </div>
-            <h3 className="font-semibold text-[hsl(var(--foreground))]">Analytics</h3>
+            <h2 className="font-semibold text-[hsl(var(--foreground))]">Analytics</h2>
             <p className="mt-1.5 text-sm text-[hsl(var(--muted-foreground))]">
               Track clicks, referrers, locations, and devices in real time.
             </p>
@@ -198,7 +199,7 @@ export default function Home() {
             <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[hsl(var(--primary))]/10">
               <Code2 className="h-5 w-5 text-[hsl(var(--primary))]" />
             </div>
-            <h3 className="font-semibold text-[hsl(var(--foreground))]">API</h3>
+            <h2 className="font-semibold text-[hsl(var(--foreground))]">API</h2>
             <p className="mt-1.5 text-sm text-[hsl(var(--muted-foreground))]">
               Integrate powerful link management into your product with our API.
             </p>
@@ -347,6 +348,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      </main>
 
       {/* Footer */}
       <footer className="border-t border-[hsl(var(--border))/0.5] py-8 text-center">

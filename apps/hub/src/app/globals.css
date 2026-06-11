@@ -12,7 +12,7 @@
   --secondary: 0 0% 94%;
   --secondary-foreground: 0 0% 15%;
   --muted: 0 0% 94%;
-  --muted-foreground: 0 0% 45%;
+  --muted-foreground: 0 0% 50%;
   --accent: 0 0% 94%;
   --accent-foreground: 0 0% 15%;
   --border: 0 0% 88%;
@@ -31,7 +31,7 @@
   --secondary: 0 0% 9%;
   --secondary-foreground: 0 0% 90%;
   --muted: 0 0% 9%;
-  --muted-foreground: 0 0% 45%;
+  --muted-foreground: 0 0% 50%;
   --accent: 0 0% 9%;
   --accent-foreground: 0 0% 90%;
   --border: 0 0% 13%;
@@ -75,4 +75,32 @@ body {
 
 .critical-row:last-child {
   border-bottom: none;
+}
+
+/* Hero CSS animations — replaces framer-motion on the critical render path */
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-animate {
+  opacity: 0;
+  animation: hero-fade-up 0.5s ease-out forwards;
+}
+
+.hero-delay-1 { animation-delay: 0.1s; }
+.hero-delay-2 { animation-delay: 0.2s; }
+.hero-delay-3 { animation-delay: 0.3s; }
+.hero-delay-4 { animation-delay: 0.8s; }
+
+/* Skip rendering off-screen sections until scrolled near */
+.lazy-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }

@@ -91,3 +91,8 @@ body {
 .animate-presence {
   animation: presence-pulse 2s ease-in-out infinite;
 }
+
+.lazy-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}

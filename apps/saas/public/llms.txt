@@ -1,0 +1,18 @@
+# Tracker - Bug Tracking SaaS
+
+> A modern bug tracking and project management platform with team collaboration, real-time activity feeds, and subscription-based billing.
+
+## Pages
+
+- [Home](https://tracker.example.com/)
+- [Pricing](https://tracker.example.com/pricing)
+- [Sign Up](https://tracker.example.com/auth/signup)
+- [Login](https://tracker.example.com/auth/login)
+
+## Features
+
+- Bug tracking and issue management
+- Team collaboration with role-based access
+- Real-time activity monitoring
+- Project organization with kanban boards
+- Subscription billing and plan management

@@ -71,7 +71,7 @@ export function ShortenForm({ onResult }: ShortenFormProps) {
             />
           </div>
           <div className="hidden items-center sm:flex">
-            <select className="h-12 rounded-xl border border-[hsl(var(--border))/0.4] bg-[hsl(var(--background))/0.4] px-3 text-sm text-[hsl(var(--muted-foreground))] backdrop-blur-sm focus:outline-none">
+            <select aria-label="Link options" className="h-12 rounded-xl border border-[hsl(var(--border))/0.4] bg-[hsl(var(--background))/0.4] px-3 text-sm text-[hsl(var(--muted-foreground))] backdrop-blur-sm focus:outline-none">
               <option>Custom slug</option>
             </select>
           </div>

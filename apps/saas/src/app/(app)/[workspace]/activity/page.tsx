@@ -92,7 +92,7 @@ export default function ActivityPage() {
                     {activity.actor_id.slice(0, 8)}
                   </span>{" "}
                   <span>{ACTION_LABELS[activity.action] ?? activity.action}</span>
-                  {activity.metadata && (activity.metadata as Record<string, unknown>).title && (
+                  {activity.metadata && !!(activity.metadata as Record<string, unknown>).title && (
                     <span className="font-medium">
                       {" "}&quot;{String((activity.metadata as Record<string, unknown>).title)}&quot;
                     </span>

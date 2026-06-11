@@ -66,7 +66,7 @@ export async function POST(request: Request) {
     model: google("gemini-2.0-flash"),
     system: templateConfig.systemPrompt,
     messages: await convertToModelMessages(messages as UIMessage[]),
-    maxTokens: templateConfig.maxTokens,
+    maxOutputTokens: templateConfig.maxTokens,
   });
 
   return result.toUIMessageStreamResponse({

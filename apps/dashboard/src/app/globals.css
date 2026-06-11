@@ -81,3 +81,8 @@ body {
     linear-gradient(90deg, hsla(228, 12%, 16%, 0.5) 1px, transparent 1px);
   background-size: 60px 60px;
 }
+
+.lazy-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}

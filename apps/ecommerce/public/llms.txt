@@ -1,0 +1,19 @@
+# DevStore - Developer Ecommerce
+
+> A modern ecommerce platform for developer tools, books, and accessories with Stripe-powered checkout, order tracking, and admin dashboard.
+
+## Pages
+
+- [Home](https://devstore.example.com/)
+- [Products](https://devstore.example.com/products)
+- [Cart](https://devstore.example.com/cart)
+- [Sign Up](https://devstore.example.com/auth/signup)
+- [Login](https://devstore.example.com/auth/login)
+
+## Features
+
+- Product catalog with search and filtering
+- Shopping cart with persistent storage
+- Stripe checkout integration
+- Order history and tracking
+- Admin dashboard for product and order management

@@ -52,7 +52,7 @@ export default function NewIssuePage() {
       .order("name");
 
     setProjects(data ?? []);
-    if (data && data.length > 0) {
+    if (data && data.length > 0 && data[0]) {
       setProjectId(data[0].id);
     }
   }

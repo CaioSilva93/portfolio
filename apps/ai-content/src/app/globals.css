@@ -169,3 +169,8 @@ body {
 .animate-float-slow {
   animation: float-slow 6s ease-in-out infinite;
 }
+
+.lazy-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}

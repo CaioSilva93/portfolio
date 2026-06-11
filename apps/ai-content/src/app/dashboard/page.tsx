@@ -143,10 +143,10 @@ export default async function DashboardPage() {
                   Pick a template above to generate your first piece of
                   AI-powered content.
                 </p>
-                <Link href={`/generate/${templates[0].slug}`}>
+                <Link href={`/generate/${templates[0]?.slug}`}>
                   <Button>
                     <Sparkles className="mr-2 h-4 w-4" />
-                    Try {templates[0].name}
+                    Try {templates[0]?.name}
                   </Button>
                 </Link>
               </CardContent>

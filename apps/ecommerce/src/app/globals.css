@@ -88,3 +88,8 @@ body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.lazy-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}

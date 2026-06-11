@@ -101,7 +101,7 @@ export default async function WorkspaceDashboard({
                 <Clock className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
                 <span className="text-sm">
                   {activity.action.replace(/_/g, " ")}
-                  {(activity.metadata as Record<string, unknown>)?.title && (
+                  {!!(activity.metadata as Record<string, unknown>)?.title && (
                     <span className="font-medium">
                       {" "}&quot;{String((activity.metadata as Record<string, unknown>).title)}&quot;
                     </span>
