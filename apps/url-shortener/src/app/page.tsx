@@ -248,10 +248,10 @@ export default function Home() {
                 </h3>
                 <p className="mt-1.5 text-sm text-[hsl(var(--muted-foreground))]">
                   AI code generation is powerful, but it consistently produces plausible-looking code with
-                  subtle security holes and architectural mistakes. Across 4 review cycles, I identified
-                  and fixed 3 critical security vulnerabilities, 8 architectural warnings, and multiple
-                  convention issues &mdash; none of which the AI caught on its own. Effective AI-assisted
-                  development requires someone who knows what to look for.
+                  subtle security holes and architectural mistakes. In this project alone, I identified
+                  and fixed 3 critical security vulnerabilities and 3 architectural warnings &mdash; none
+                  of which the AI caught on its own. Effective AI-assisted development requires someone
+                  who knows what to look for.
                 </p>
               </div>
             </div>

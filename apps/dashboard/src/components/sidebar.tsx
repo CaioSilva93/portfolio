@@ -20,10 +20,10 @@ export function Sidebar({ role, onNavigate }: SidebarProps) {
 
   return (
     <div className="flex h-full flex-col">
-      <div className="flex h-14 items-center gap-2 border-b px-4">
+      <Link href="/" onClick={onNavigate} className="flex h-14 items-center gap-2 border-b px-4">
         <BarChart3 className="h-6 w-6 text-primary" />
         <span className="text-lg font-bold">Analytics</span>
-      </div>
+      </Link>
       <nav className="flex-1 space-y-1 p-3">
         {navItems.map((item) => {
           const active = pathname === item.href;
