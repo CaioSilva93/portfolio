@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { ShoppingCart, Sun, Moon, Menu, LogOut } from "lucide-react";
+import { ShoppingCart, Sun, Moon, Menu, LogOut, Gem } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -14,7 +14,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { CartSheet } from "@/components/cart-sheet";
 import { useCart } from "@/hooks/use-cart";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface StoreHeaderProps {
   user?: { email?: string } | null;
@@ -24,7 +24,14 @@ export function StoreHeader({ user }: StoreHeaderProps) {
   const { theme, setTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { cartItemCount } = useCart();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const navLinks = [
     { href: "/products", label: "Products" },
@@ -33,18 +40,27 @@ export function StoreHeader({ user }: StoreHeaderProps) {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <header
+        className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+          scrolled
+            ? "border-b border-[hsl(var(--border))] bg-[hsl(var(--background))]/90 backdrop-blur-xl"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
           <div className="flex items-center gap-6">
-            <Link href="/" className="text-xl font-bold tracking-tight">
-              Shop
+            <Link href="/" className="flex items-center gap-2">
+              <Gem className="h-5 w-5 text-[hsl(var(--primary))]" />
+              <span className="text-lg font-bold tracking-tight text-[hsl(var(--foreground))]">
+                Shop
+              </span>
             </Link>
-            <nav className="hidden items-center gap-4 md:flex">
+            <nav className="hidden items-center gap-1 md:flex">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  className="rounded-md px-3 py-1.5 text-sm text-[hsl(var(--muted-foreground))] transition-colors hover:bg-[hsl(var(--accent))] hover:text-[hsl(var(--foreground))]"
                 >
                   {link.label}
                 </Link>
@@ -58,6 +74,7 @@ export function StoreHeader({ user }: StoreHeaderProps) {
               size="icon"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               aria-label="Toggle theme"
+              className="text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]"
             >
               <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
               <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
@@ -66,7 +83,7 @@ export function StoreHeader({ user }: StoreHeaderProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="relative"
+              className="relative text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]"
               onClick={() => setCartOpen(true)}
               aria-label="Open cart"
             >
@@ -74,7 +91,7 @@ export function StoreHeader({ user }: StoreHeaderProps) {
               {cartItemCount > 0 && (
                 <Badge
                   variant="secondary"
-                  className="absolute -right-1 -top-1 h-5 w-5 items-center justify-center rounded-full p-0 text-[10px]"
+                  className="absolute -right-1 -top-1 h-5 w-5 items-center justify-center rounded-full bg-[hsl(var(--primary))] p-0 text-[10px] text-[hsl(var(--primary-foreground))]"
                 >
                   {cartItemCount > 99 ? "99+" : cartItemCount}
                 </Badge>
@@ -82,9 +99,10 @@ export function StoreHeader({ user }: StoreHeaderProps) {
             </Button>
 
             <div className="hidden items-center gap-2 md:flex">
+              <div className="mx-1 h-5 w-px bg-[hsl(var(--border))]" />
               {user ? (
                 <>
-                  <span className="text-sm text-muted-foreground">
+                  <span className="text-sm text-[hsl(var(--muted-foreground))]">
                     {user.email}
                   </span>
                   <form action="/auth/signout" method="POST">
@@ -95,7 +113,7 @@ export function StoreHeader({ user }: StoreHeaderProps) {
                 </>
               ) : (
                 <Link href="/auth/login">
-                  <Button variant="outline" size="sm">
+                  <Button size="sm" className="rounded-lg bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] hover:brightness-110">
                     Login
                   </Button>
                 </Link>
@@ -116,7 +134,7 @@ export function StoreHeader({ user }: StoreHeaderProps) {
                       key={link.href}
                       href={link.href}
                       onClick={() => setMenuOpen(false)}
-                      className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                      className="text-sm font-medium text-[hsl(var(--muted-foreground))] transition-colors hover:text-[hsl(var(--foreground))]"
                     >
                       {link.label}
                     </Link>
@@ -124,7 +142,7 @@ export function StoreHeader({ user }: StoreHeaderProps) {
                   <Separator className="my-2" />
                   {user ? (
                     <>
-                      <span className="text-sm text-muted-foreground">
+                      <span className="text-sm text-[hsl(var(--muted-foreground))]">
                         {user.email}
                       </span>
                       <form action="/auth/signout" method="POST">

@@ -2,49 +2,65 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Shield, Bug, CreditCard, Users, Activity, Layers } from "lucide-react";
 import { GithubIcon } from "@/components/icons";
+
+const featuredProject = {
+  name: "Tracker",
+  title: "Complex SaaS Issue Tracker",
+  description:
+    "Multi-tenant SaaS with workspaces, projects, Stripe subscriptions, RBAC, and real-time activity feeds. 4 critical security vulnerabilities and 3 architectural warnings caught across 9 adversarial AI review cycles.",
+  tech: ["Next.js 16", "Supabase", "Stripe", "Upstash Redis", "Tailwind CSS"],
+  link: "http://localhost:3006",
+  github: "#",
+  stats: { critical: 4, warnings: 3, cycles: 9 },
+};
 
 const projects = [
   {
-    title: "SaaS Analytics Dashboard",
-    description: "Real-time data visualization platform with auth, RBAC, and multi-tenant architecture. Features live-updating charts and exportable reports.",
-    tech: ["Next.js", "TypeScript", "Supabase", "Recharts"],
-    link: "#",
-    github: "#",
-    color: "from-cyan-500/10 to-blue-500/10",
-  },
-  {
-    title: "AI Content Generator",
-    description: "Marketing copy generator powered by Google Gemini with streaming responses, prompt templates, and generation history.",
-    tech: ["Next.js", "Vercel AI SDK", "Gemini API", "Supabase"],
-    link: "#",
-    github: "#",
-    color: "from-purple-500/10 to-pink-500/10",
-  },
-  {
-    title: "E-commerce Platform",
-    description: "Full-featured online store with Stripe checkout, persistent cart, product catalog with SSR, and admin panel.",
-    tech: ["Next.js", "Stripe", "Supabase", "Tailwind"],
-    link: "#",
-    github: "#",
-    color: "from-green-500/10 to-emerald-500/10",
-  },
-  {
-    title: "Realtime Collaborative Board",
-    description: "Kanban board with real-time sync, drag-and-drop, presence indicators, and activity history — like a lightweight Trello.",
-    tech: ["Next.js", "Supabase Realtime", "dnd-kit", "Yjs"],
-    link: "#",
-    github: "#",
-    color: "from-orange-500/10 to-yellow-500/10",
-  },
-  {
+    name: "Snip",
     title: "URL Shortener with Analytics",
-    description: "Link shortener with click analytics dashboard, QR code generation, Redis caching, and documented REST API.",
-    tech: ["Next.js", "Supabase", "Upstash Redis", "Recharts"],
-    link: "#",
+    description:
+      "Link shortener with click analytics dashboard, QR code generation, Redis caching, and documented REST API.",
+    tech: ["Next.js", "Supabase", "Redis", "Recharts"],
+    link: "http://localhost:3001",
     github: "#",
-    color: "from-rose-500/10 to-red-500/10",
+  },
+  {
+    name: "Muse",
+    title: "AI Content Generator",
+    description:
+      "Marketing copy generator powered by Google Gemini with streaming responses, prompt templates, and generation history.",
+    tech: ["Next.js", "Vercel AI SDK", "Gemini API", "Supabase"],
+    link: "http://localhost:3002",
+    github: "#",
+  },
+  {
+    name: "Pulse",
+    title: "Analytics Dashboard",
+    description:
+      "Real-time data visualization platform with auth, RBAC, team management, and exportable reports.",
+    tech: ["Next.js", "Supabase", "Recharts", "Redis"],
+    link: "http://localhost:3003",
+    github: "#",
+  },
+  {
+    name: "Bazaar",
+    title: "E-commerce Platform",
+    description:
+      "Full-featured online store with Stripe checkout, persistent cart, product catalog with SSR, and admin panel.",
+    tech: ["Next.js", "Stripe", "Supabase", "Tailwind"],
+    link: "http://localhost:3004",
+    github: "#",
+  },
+  {
+    name: "Sync",
+    title: "Realtime Collaborative Board",
+    description:
+      "Kanban board with real-time sync, drag-and-drop, presence indicators, and activity history.",
+    tech: ["Next.js", "Supabase Realtime", "dnd-kit"],
+    link: "http://localhost:3005",
+    github: "#",
   },
 ];
 
@@ -53,7 +69,7 @@ export function Projects() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="projects" className="py-24 px-6" ref={ref}>
+    <section id="projects" className="px-6 py-24" ref={ref}>
       <div className="mx-auto max-w-6xl">
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
@@ -61,52 +77,146 @@ export function Projects() {
           transition={{ duration: 0.6 }}
           className="flex items-center gap-3 text-2xl font-bold text-[hsl(var(--foreground))]"
         >
-          <span className="font-[family-name:var(--font-mono)] text-[hsl(var(--primary))]">02.</span>
+          <span className="font-[family-name:var(--font-mono)] text-[hsl(var(--primary))]">
+            02.
+          </span>
           Projects
         </motion.h2>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, i) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group relative overflow-hidden rounded-xl border border-[hsl(var(--border))] bg-[hsl(var(--card))] p-6 transition-all hover:border-[hsl(var(--primary))]/50 hover:shadow-lg hover:shadow-[hsl(var(--primary))]/5"
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 transition-opacity group-hover:opacity-100`} />
+        {/* Featured Project */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mt-10"
+        >
+          <a
+            href={featuredProject.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block featured-card rounded-xl p-6 sm:p-8 transition-all hover:bg-[hsl(0_0%_6%)]"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <span className="font-[family-name:var(--font-mono)] text-[10px] font-semibold uppercase tracking-widest text-[hsl(var(--primary))]">
+                ★ Featured Project
+              </span>
+            </div>
 
-              <div className="relative">
-                <div className="flex items-start justify-between">
-                  <h3 className="text-lg font-semibold text-[hsl(var(--foreground))]">
-                    {project.title}
+            <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:gap-10">
+              <div>
+                <div className="flex items-baseline gap-3">
+                  <span className="font-[family-name:var(--font-mono)] text-xs text-[hsl(var(--muted-foreground))]">
+                    {featuredProject.name}
+                  </span>
+                  <h3 className="text-xl font-bold text-[hsl(var(--foreground))] sm:text-2xl">
+                    {featuredProject.title}
                   </h3>
-                  <div className="flex gap-2">
-                    <a href={project.github} className="text-[hsl(var(--muted-foreground))] transition-colors hover:text-[hsl(var(--foreground))]">
-                      <GithubIcon className="h-4 w-4" />
-                    </a>
-                    <a href={project.link} className="text-[hsl(var(--muted-foreground))] transition-colors hover:text-[hsl(var(--foreground))]">
-                      <ArrowUpRight className="h-4 w-4" />
-                    </a>
-                  </div>
                 </div>
 
-                <p className="mt-3 text-sm text-[hsl(var(--muted-foreground))]">
-                  {project.description}
+                <p className="mt-3 text-sm leading-relaxed text-[hsl(var(--muted-foreground))]">
+                  {featuredProject.description}
                 </p>
 
                 <div className="mt-4 flex flex-wrap gap-2">
-                  {project.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-full bg-[hsl(var(--secondary))] px-3 py-1 font-[family-name:var(--font-mono)] text-xs text-[hsl(var(--muted-foreground))]"
-                    >
+                  {featuredProject.tech.map((t) => (
+                    <span key={t} className="terminal-badge rounded px-2.5 py-1 font-[family-name:var(--font-mono)] text-[11px]">
                       {t}
                     </span>
                   ))}
                 </div>
+
+                <div className="mt-5 flex items-center gap-6">
+                  <span className="inline-flex items-center gap-2 font-[family-name:var(--font-mono)] text-xs text-[hsl(var(--primary))] transition-all group-hover:gap-3">
+                    View Project
+                    <ArrowUpRight className="h-3.5 w-3.5" />
+                  </span>
+                  <span className="text-[11px] text-red-400">
+                    {featuredProject.stats.critical} critical
+                  </span>
+                  <span className="text-[11px] text-amber-400">
+                    {featuredProject.stats.warnings} warnings
+                  </span>
+                  <span className="text-[11px] text-[hsl(var(--muted-foreground))]">
+                    {featuredProject.stats.cycles} review cycles
+                  </span>
+                </div>
               </div>
-            </motion.div>
+
+              {/* Mini dashboard preview */}
+              <div className="hidden rounded-lg border border-[hsl(var(--border))] bg-[hsl(0_0%_3%)] p-4 lg:block">
+                <div className="flex items-center gap-2 border-b border-[hsl(var(--border))] pb-3">
+                  <Bug className="h-3.5 w-3.5 text-[hsl(var(--primary))]" />
+                  <span className="font-[family-name:var(--font-mono)] text-[11px] text-[hsl(var(--foreground))]">
+                    Tracker Dashboard
+                  </span>
+                </div>
+                <div className="mt-3 grid grid-cols-3 gap-2">
+                  {[
+                    { label: "Open", value: "12" },
+                    { label: "Done", value: "47" },
+                    { label: "Members", value: "5" },
+                  ].map((s) => (
+                    <div key={s.label} className="rounded border border-[hsl(var(--border))] bg-[hsl(0_0%_5%)] p-2.5 text-center">
+                      <p className="font-[family-name:var(--font-mono)] text-lg font-bold text-[hsl(var(--foreground))]">{s.value}</p>
+                      <p className="text-[10px] text-[hsl(var(--muted-foreground))]">{s.label}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-3 space-y-1.5">
+                  {["issue_created", "member_invited", "issue_resolved"].map((a) => (
+                    <div key={a} className="flex items-center gap-2">
+                      <Activity className="h-2.5 w-2.5 text-[hsl(var(--muted-foreground))]" />
+                      <span className="font-[family-name:var(--font-mono)] text-[10px] text-[hsl(var(--muted-foreground))]">
+                        {a.replace(/_/g, " ")}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </a>
+        </motion.div>
+
+        {/* Other Projects Grid */}
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, i) => (
+            <motion.a
+              key={project.name}
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.2 + i * 0.08 }}
+              className="group terminal-card rounded-xl p-5"
+            >
+              <div className="flex items-start justify-between">
+                <div>
+                  <span className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-wider text-[hsl(var(--primary))]">
+                    {project.name}
+                  </span>
+                  <h3 className="mt-1 text-sm font-semibold text-[hsl(var(--foreground))]">
+                    {project.title}
+                  </h3>
+                </div>
+                <ArrowUpRight className="h-4 w-4 text-[hsl(var(--muted-foreground))] transition-all group-hover:text-[hsl(var(--primary))] group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </div>
+
+              <p className="mt-2 text-[13px] leading-relaxed text-[hsl(var(--muted-foreground))]">
+                {project.description}
+              </p>
+
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {project.tech.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded bg-[hsl(var(--secondary))] px-2 py-0.5 font-[family-name:var(--font-mono)] text-[10px] text-[hsl(var(--muted-foreground))]"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </motion.a>
           ))}
         </div>
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Mail } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { GithubIcon } from "@/components/icons";
 
 export function Hero() {
@@ -21,7 +21,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mt-4 text-4xl font-bold tracking-tight text-[hsl(var(--foreground))] sm:text-6xl lg:text-7xl"
+          className="mt-4 text-5xl font-bold tracking-tight text-[hsl(var(--foreground))] sm:text-7xl lg:text-8xl"
         >
           Caio Silva.
         </motion.h1>
@@ -30,7 +30,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-2 text-3xl font-bold tracking-tight text-[hsl(var(--muted-foreground))] sm:text-5xl lg:text-6xl"
+          className="mt-3 text-2xl font-bold tracking-tight text-[hsl(var(--muted-foreground))] sm:text-4xl lg:text-5xl"
         >
           I build things for the web.
         </motion.h2>
@@ -39,12 +39,11 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mx-auto mt-6 max-w-2xl text-base text-[hsl(var(--muted-foreground))] sm:text-lg"
+          className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-[hsl(var(--muted-foreground))] sm:text-base"
         >
-          Fullstack Developer with 5+ years of experience building scalable web
-          applications. Background in digital marketing brings a unique
-          product-minded perspective. AI-augmented workflow for maximum
-          productivity.
+          Fullstack Developer with 5+ years building scalable web applications.
+          Background in digital marketing brings a product-minded perspective.
+          AI-augmented workflow — every project reviewed through adversarial cycles.
         </motion.p>
 
         <motion.div
@@ -55,7 +54,7 @@ export function Hero() {
         >
           <a
             href="#projects"
-            className="rounded-lg bg-[hsl(var(--primary))] px-6 py-3 text-sm font-medium text-[hsl(var(--primary-foreground))] transition-opacity hover:opacity-90"
+            className="rounded-md bg-[hsl(var(--primary))] px-6 py-3 text-sm font-semibold text-[hsl(var(--primary-foreground))] transition-opacity hover:opacity-90"
           >
             View Projects
           </a>
@@ -63,7 +62,7 @@ export function Hero() {
             href="https://github.com/CaioSilva93"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-lg border border-[hsl(var(--border))] px-6 py-3 text-sm font-medium text-[hsl(var(--foreground))] transition-colors hover:bg-[hsl(var(--accent))]"
+            className="flex items-center gap-2 rounded-md border border-[hsl(var(--border))] px-6 py-3 text-sm font-medium text-[hsl(var(--foreground))] transition-colors hover:bg-[hsl(var(--accent))]"
           >
             <GithubIcon className="h-4 w-4" />
             GitHub

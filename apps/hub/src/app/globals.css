@@ -4,37 +4,39 @@
 
 :root {
   --background: 0 0% 100%;
-  --foreground: 240 10% 3.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 3.9%;
-  --primary: 186 100% 42%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 240 4.8% 95.9%;
-  --secondary-foreground: 240 5.9% 10%;
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
-  --accent: 240 4.8% 95.9%;
-  --accent-foreground: 240 5.9% 10%;
-  --border: 240 5.9% 90%;
-  --ring: 186 100% 42%;
-  --radius: 0.75rem;
+  --foreground: 0 0% 9%;
+  --card: 0 0% 97%;
+  --card-foreground: 0 0% 9%;
+  --primary: 142 72% 45%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 0 0% 94%;
+  --secondary-foreground: 0 0% 15%;
+  --muted: 0 0% 94%;
+  --muted-foreground: 0 0% 45%;
+  --accent: 0 0% 94%;
+  --accent-foreground: 0 0% 15%;
+  --border: 0 0% 88%;
+  --input: 0 0% 88%;
+  --ring: 142 72% 45%;
+  --radius: 0.5rem;
 }
 
 .dark {
-  --background: 222 47% 6%;
-  --foreground: 210 40% 98%;
-  --card: 222 47% 8%;
-  --card-foreground: 210 40% 98%;
-  --primary: 186 100% 50%;
-  --primary-foreground: 222 47% 6%;
-  --secondary: 217 33% 17%;
-  --secondary-foreground: 210 40% 98%;
-  --muted: 217 33% 17%;
-  --muted-foreground: 215 20% 65%;
-  --accent: 217 33% 17%;
-  --accent-foreground: 210 40% 98%;
-  --border: 217 33% 17%;
-  --ring: 186 100% 50%;
+  --background: 0 0% 0%;
+  --foreground: 0 0% 90%;
+  --card: 0 0% 5%;
+  --card-foreground: 0 0% 90%;
+  --primary: 142 72% 50%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 0 0% 9%;
+  --secondary-foreground: 0 0% 90%;
+  --muted: 0 0% 9%;
+  --muted-foreground: 0 0% 45%;
+  --accent: 0 0% 9%;
+  --accent-foreground: 0 0% 90%;
+  --border: 0 0% 13%;
+  --input: 0 0% 13%;
+  --ring: 142 72% 50%;
 }
 
 * {
@@ -44,4 +46,33 @@
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
+}
+
+.terminal-card {
+  background: hsl(0 0% 4%);
+  border: 1px solid hsl(0 0% 13%);
+  transition: border-color 0.2s ease;
+}
+
+.terminal-card:hover {
+  border-color: hsl(0 0% 20%);
+}
+
+.featured-card {
+  background: hsl(0 0% 4%);
+  border: 1px solid hsl(0 0% 13%);
+}
+
+.terminal-badge {
+  background: hsla(142, 72%, 50%, 0.1);
+  color: hsl(142, 72%, 50%);
+  border: 1px solid hsla(142, 72%, 50%, 0.2);
+}
+
+.critical-row {
+  border-bottom: 1px solid hsl(0 0% 10%);
+}
+
+.critical-row:last-child {
+  border-bottom: none;
 }

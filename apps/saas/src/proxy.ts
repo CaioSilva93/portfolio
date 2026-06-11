@@ -38,8 +38,9 @@ export async function proxy(request: NextRequest) {
   const isAuthPage =
     request.nextUrl.pathname.startsWith("/auth/login") ||
     request.nextUrl.pathname.startsWith("/auth/signup");
+  const isLandingPage = request.nextUrl.pathname === "/";
 
-  if (!user && !isAuthPage && !request.nextUrl.pathname.startsWith("/api/")) {
+  if (!user && !isAuthPage && !isLandingPage && !request.nextUrl.pathname.startsWith("/api/")) {
     const url = request.nextUrl.clone();
     url.pathname = "/auth/login";
     return NextResponse.redirect(url);
@@ -47,7 +48,7 @@ export async function proxy(request: NextRequest) {
 
   if (user && isAuthPage) {
     const url = request.nextUrl.clone();
-    url.pathname = "/";
+    url.pathname = "/onboarding";
     return NextResponse.redirect(url);
   }
 

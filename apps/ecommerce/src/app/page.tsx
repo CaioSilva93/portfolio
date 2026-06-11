@@ -3,8 +3,16 @@ import { createClient } from "@/lib/supabase/server";
 import { getCached } from "@/lib/redis";
 import { StoreHeader } from "@/components/store-header";
 import { ProductGrid } from "@/components/product-grid";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, ShieldAlert, AlertTriangle, Eye } from "lucide-react";
+import {
+  ArrowRight,
+  ShieldAlert,
+  AlertTriangle,
+  Eye,
+  Gem,
+  Shield,
+  Truck,
+  CreditCard,
+} from "lucide-react";
 import type { Product } from "@/lib/types";
 
 async function getFeaturedProducts(): Promise<Product[]> {
@@ -36,41 +44,73 @@ export default async function HomePage() {
     <div className="min-h-screen">
       <StoreHeader user={user} />
 
-      <section className="relative overflow-hidden border-b">
-        <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        <div className="luxury-gradient absolute inset-0 -z-10" />
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute -left-[200px] top-[100px] h-[500px] w-[500px] rounded-full bg-[hsl(38,92%,50%)] opacity-[0.04] blur-[150px]" />
+          <div className="absolute -right-[100px] top-[200px] h-[400px] w-[400px] rounded-full bg-[hsl(30,70%,40%)] opacity-[0.03] blur-[120px]" />
+        </div>
+
+        <div className="mx-auto max-w-6xl px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-2xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-              Welcome to the{" "}
-              <span className="text-primary">Shop</span>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[hsl(var(--border))] bg-[hsl(var(--card))/0.5] px-4 py-1.5 text-sm text-[hsl(var(--muted-foreground))]">
+              <Gem className="h-3.5 w-3.5 text-[hsl(var(--primary))]" />
+              Premium E-commerce Experience
+            </div>
+
+            <h1 className="text-[3rem] font-bold leading-[1.1] tracking-[-0.03em] sm:text-[4rem] lg:text-[5rem]">
+              Welcome to
+              <br />
+              the <span className="text-gold">Shop</span>
             </h1>
-            <p className="mt-6 text-lg leading-8 text-muted-foreground">
-              A demo e-commerce platform built with Next.js, Supabase, and
-              Stripe. Browse products, add to cart, and checkout with a
-              complete payment flow.
+
+            <p className="mt-6 text-lg leading-relaxed text-[hsl(var(--muted-foreground))]">
+              A production-grade e-commerce platform with secure Stripe checkout,
+              real-time inventory, and server-side caching.
             </p>
+
             <div className="mt-10 flex items-center justify-center gap-4">
-              <Link href="/products">
-                <Button size="lg">
-                  Browse Products
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+              <Link
+                href="/products"
+                className="inline-flex items-center gap-2 rounded-lg bg-[hsl(var(--primary))] px-8 py-3.5 text-sm font-semibold text-[hsl(var(--primary-foreground))] transition-all hover:brightness-110 hover:shadow-[0_0_30px_hsl(var(--primary)/0.3)]"
+              >
+                Browse Products
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
         </div>
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(45%_40%_at_50%_60%,hsl(var(--primary)/0.12),transparent)]" />
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      {/* Trust Badges */}
+      <section className="border-y border-[hsl(var(--border))]">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-0 divide-x divide-[hsl(var(--border))] px-0 sm:grid-cols-4">
+          {[
+            { icon: Shield, label: "Secure Checkout", sub: "Stripe powered" },
+            { icon: Truck, label: "Fast Delivery", sub: "Redis cached" },
+            { icon: CreditCard, label: "Easy Payments", sub: "Cards & wallets" },
+            { icon: Gem, label: "Quality Products", sub: "Curated catalog" },
+          ].map((b) => (
+            <div key={b.label} className="flex flex-col items-center gap-2 px-4 py-6 text-center">
+              <b.icon className="h-5 w-5 text-[hsl(var(--primary))]" />
+              <span className="text-sm font-medium text-[hsl(var(--foreground))]">{b.label}</span>
+              <span className="text-xs text-[hsl(var(--muted-foreground))]">{b.sub}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="mx-auto max-w-6xl px-6 py-16">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-bold tracking-tight">
-            Featured Products
-          </h2>
+          <h2 className="text-2xl font-bold tracking-tight">Featured Products</h2>
           <Link
             href="/products"
-            className="text-sm font-medium text-primary hover:underline"
+            className="flex items-center gap-1 text-sm font-medium text-[hsl(var(--primary))] transition-colors hover:brightness-110"
           >
             View all
+            <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
         <div className="mt-8">
@@ -78,203 +118,115 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mb-8 text-center">
-          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+      {/* Built with AI */}
+      <section className="mx-auto max-w-4xl px-6 py-16">
+        <div className="mb-10 text-center">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Built with AI, reviewed by a human
           </h2>
-          <p className="mt-3 text-muted-foreground">
-            This project was generated by AI agents, but every critical flaw below was caught
-            and fixed through my experience directing AI workflows. Without human oversight,
-            these issues would have shipped to production.
+          <p className="mx-auto mt-4 max-w-2xl text-[hsl(var(--muted-foreground))]">
+            This project was generated by AI agents, but every critical flaw below
+            was caught and fixed through my experience directing AI workflows.
           </p>
         </div>
 
-        <div className="space-y-4">
-          <div className="rounded-xl border border-red-500/30 bg-red-500/5 p-5">
-            <div className="flex items-start gap-3">
-              <ShieldAlert className="mt-0.5 h-5 w-5 shrink-0 text-red-500" />
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="rounded bg-red-500/10 px-2 py-0.5 font-mono text-xs font-semibold text-red-500">
-                    CRITICAL
-                  </span>
-                  <h3 className="font-semibold">
-                    RLS policies allowed admin privilege escalation
-                  </h3>
+        <div className="space-y-3">
+          {[
+            {
+              type: "critical" as const,
+              title: "RLS policies allowed admin privilege escalation",
+              desc: "The AI generated RLS policies on shop_profiles without restricting the role column, letting any user self-promote to admin. I added explicit AND role = 'customer' constraints.",
+            },
+            {
+              type: "critical" as const,
+              title: "Non-transactional webhook handler could corrupt orders",
+              desc: "The Stripe webhook handler had separate sequential queries without a transaction. If the order insert failed after stock was decremented, inventory would be permanently lost. I replaced it with an atomic PL/pgSQL function.",
+            },
+            {
+              type: "critical" as const,
+              title: "Seed route granted admin role without authorization",
+              desc: "The /api/seed route set the calling user as admin with no guard. I implemented a bootstrap guard where only the first user becomes admin, plus rate limiting.",
+            },
+            {
+              type: "critical" as const,
+              title: "Missing Stripe client packages would break checkout",
+              desc: "The AI planned Embedded Checkout but never added @stripe/stripe-js or @stripe/react-stripe-js to dependencies. The build would have failed at the checkout page.",
+            },
+            {
+              type: "warning" as const,
+              title: "No webhook idempotency — duplicate orders on retry",
+              desc: "Stripe can send the same checkout.session.completed event multiple times. I added a UNIQUE constraint on stripe_checkout_session_id and a check-before-insert guard.",
+            },
+            {
+              type: "warning" as const,
+              title: "Redis KEYS scan would block the server at scale",
+              desc: "The AI used redis.keys('shop:*') for cache invalidation — an O(N) blocking command. I replaced it with a version-key counter pattern for O(1) invalidation.",
+            },
+            {
+              type: "warning" as const,
+              title: "No stock validation before checkout",
+              desc: "Users could purchase out-of-stock items. I added pre-checkout validation plus atomic stock decrement with a FOR UPDATE row lock to prevent overselling.",
+            },
+          ].map((item) => (
+            <div
+              key={item.title}
+              className={`rounded-xl border p-5 ${
+                item.type === "critical"
+                  ? "border-red-500/20 bg-red-500/[0.04]"
+                  : "border-amber-500/20 bg-amber-500/[0.04]"
+              }`}
+            >
+              <div className="flex items-start gap-3">
+                {item.type === "critical" ? (
+                  <ShieldAlert className="mt-0.5 h-5 w-5 shrink-0 text-red-400" />
+                ) : (
+                  <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-400" />
+                )}
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`rounded-md px-2 py-0.5 font-[family-name:var(--font-jetbrains-mono)] text-xs font-semibold ${
+                        item.type === "critical"
+                          ? "bg-red-500/10 text-red-400"
+                          : "bg-amber-500/10 text-amber-400"
+                      }`}
+                    >
+                      {item.type === "critical" ? "CRITICAL" : "WARNING"}
+                    </span>
+                    <h3 className="font-semibold text-[hsl(var(--foreground))]">
+                      {item.title}
+                    </h3>
+                  </div>
+                  <p className="mt-1.5 text-sm leading-relaxed text-[hsl(var(--muted-foreground))]">
+                    {item.desc}
+                  </p>
                 </div>
-                <p className="mt-1.5 text-sm text-muted-foreground">
-                  The AI generated RLS INSERT/UPDATE policies on <code className="rounded bg-muted/50 px-1 font-mono text-xs">shop_profiles</code> without
-                  restricting the <code className="rounded bg-muted/50 px-1 font-mono text-xs">role</code> column, letting any authenticated user
-                  self-promote to admin by setting <code className="rounded bg-muted/50 px-1 font-mono text-xs">role = &apos;admin&apos;</code> via the Supabase API.
-                  I added explicit <code className="rounded bg-muted/50 px-1 font-mono text-xs">AND role = &apos;customer&apos;</code> constraints and created
-                  a <code className="rounded bg-muted/50 px-1 font-mono text-xs">shop_is_admin()</code> SECURITY DEFINER STABLE function for all admin checks.
-                </p>
               </div>
             </div>
-          </div>
-
-          <div className="rounded-xl border border-red-500/30 bg-red-500/5 p-5">
-            <div className="flex items-start gap-3">
-              <ShieldAlert className="mt-0.5 h-5 w-5 shrink-0 text-red-500" />
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="rounded bg-red-500/10 px-2 py-0.5 font-mono text-xs font-semibold text-red-500">
-                    CRITICAL
-                  </span>
-                  <h3 className="font-semibold">
-                    Non-transactional webhook handler could corrupt orders
-                  </h3>
-                </div>
-                <p className="mt-1.5 text-sm text-muted-foreground">
-                  The AI wrote the Stripe webhook handler as separate sequential queries &mdash; stock decrement,
-                  order creation, and order items &mdash; without a transaction. If the order insert failed after
-                  stock was decremented, inventory would be permanently lost. I replaced it with
-                  a <code className="rounded bg-muted/50 px-1 font-mono text-xs">shop_create_order()</code> PL/pgSQL SECURITY DEFINER function
-                  that handles everything atomically with automatic rollback on failure.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-xl border border-red-500/30 bg-red-500/5 p-5">
-            <div className="flex items-start gap-3">
-              <ShieldAlert className="mt-0.5 h-5 w-5 shrink-0 text-red-500" />
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="rounded bg-red-500/10 px-2 py-0.5 font-mono text-xs font-semibold text-red-500">
-                    CRITICAL
-                  </span>
-                  <h3 className="font-semibold">
-                    Seed route granted admin role without authorization
-                  </h3>
-                </div>
-                <p className="mt-1.5 text-sm text-muted-foreground">
-                  The <code className="rounded bg-muted/50 px-1 font-mono text-xs">/api/seed</code> route set the calling user as admin with no
-                  guard, meaning any authenticated user who discovered the endpoint could become admin.
-                  I implemented a bootstrap guard where only the first user becomes admin, and subsequent
-                  calls require existing admin role, plus added rate limiting and origin checking.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-xl border border-red-500/30 bg-red-500/5 p-5">
-            <div className="flex items-start gap-3">
-              <ShieldAlert className="mt-0.5 h-5 w-5 shrink-0 text-red-500" />
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="rounded bg-red-500/10 px-2 py-0.5 font-mono text-xs font-semibold text-red-500">
-                    CRITICAL
-                  </span>
-                  <h3 className="font-semibold">
-                    Missing Stripe client packages would break checkout
-                  </h3>
-                </div>
-                <p className="mt-1.5 text-sm text-muted-foreground">
-                  The AI planned Embedded Checkout with <code className="rounded bg-muted/50 px-1 font-mono text-xs">EmbeddedCheckoutProvider</code> but
-                  never added <code className="rounded bg-muted/50 px-1 font-mono text-xs">@stripe/stripe-js</code> or <code className="rounded bg-muted/50 px-1 font-mono text-xs">@stripe/react-stripe-js</code> to
-                  the dependency list. The build would have failed at the checkout page. I caught this during
-                  dependency review and added both packages before execution.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-xl border border-yellow-500/30 bg-yellow-500/5 p-5">
-            <div className="flex items-start gap-3">
-              <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-yellow-500" />
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="rounded bg-yellow-500/10 px-2 py-0.5 font-mono text-xs font-semibold text-yellow-500">
-                    WARNING
-                  </span>
-                  <h3 className="font-semibold">
-                    No webhook idempotency &mdash; duplicate orders on retry
-                  </h3>
-                </div>
-                <p className="mt-1.5 text-sm text-muted-foreground">
-                  Stripe can send the same <code className="rounded bg-muted/50 px-1 font-mono text-xs">checkout.session.completed</code> event
-                  multiple times. The AI had no deduplication logic, so each retry would create a new order
-                  and decrement stock again. I added a UNIQUE constraint
-                  on <code className="rounded bg-muted/50 px-1 font-mono text-xs">stripe_checkout_session_id</code> and a check-before-insert guard
-                  in the webhook handler.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-xl border border-yellow-500/30 bg-yellow-500/5 p-5">
-            <div className="flex items-start gap-3">
-              <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-yellow-500" />
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="rounded bg-yellow-500/10 px-2 py-0.5 font-mono text-xs font-semibold text-yellow-500">
-                    WARNING
-                  </span>
-                  <h3 className="font-semibold">
-                    Redis KEYS scan would block the server at scale
-                  </h3>
-                </div>
-                <p className="mt-1.5 text-sm text-muted-foreground">
-                  The AI used <code className="rounded bg-muted/50 px-1 font-mono text-xs">redis.keys(&quot;shop:*&quot;)</code> for cache invalidation,
-                  which is an O(N) blocking command that scans every key in the database. On a production
-                  Redis instance this would freeze all connections. I replaced it with a version-key counter
-                  pattern (<code className="rounded bg-muted/50 px-1 font-mono text-xs">INCR shop:cache:version</code>) for O(1) non-blocking invalidation.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-xl border border-yellow-500/30 bg-yellow-500/5 p-5">
-            <div className="flex items-start gap-3">
-              <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-yellow-500" />
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="rounded bg-yellow-500/10 px-2 py-0.5 font-mono text-xs font-semibold text-yellow-500">
-                    WARNING
-                  </span>
-                  <h3 className="font-semibold">
-                    No stock validation before checkout
-                  </h3>
-                </div>
-                <p className="mt-1.5 text-sm text-muted-foreground">
-                  The AI created the checkout flow without validating product stock or active status,
-                  allowing users to purchase out-of-stock or deactivated items. I added pre-checkout validation
-                  that checks stock levels and product status, plus atomic stock decrement with
-                  a <code className="rounded bg-muted/50 px-1 font-mono text-xs">FOR UPDATE</code> row lock inside the database function to prevent overselling under concurrency.
-                </p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
 
-        <div className="mt-8 rounded-xl border bg-card p-6">
+        <div className="mt-6 luxury-card rounded-xl p-6">
           <div className="flex items-start gap-3">
-            <Eye className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+            <Eye className="mt-0.5 h-5 w-5 shrink-0 text-[hsl(var(--primary))]" />
             <div>
-              <h3 className="font-semibold">
-                Why this matters
-              </h3>
-              <p className="mt-1.5 text-sm text-muted-foreground">
-                AI code generation is powerful, but it consistently produces plausible-looking code with
-                subtle security holes and architectural mistakes. Across 3 review cycles, I identified
-                and fixed 4 critical security vulnerabilities, 26 architectural warnings, and 12
-                convention issues &mdash; none of which the AI caught on its own. Effective AI-assisted
-                development requires someone who knows what to look for.
+              <h3 className="font-semibold text-[hsl(var(--foreground))]">Why this matters</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-[hsl(var(--muted-foreground))]">
+                AI code generation is powerful, but it consistently produces plausible-looking code
+                with subtle security holes. Across 3 review cycles, I identified and fixed 4 critical
+                security vulnerabilities, 26 architectural warnings, and 12 convention issues.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <footer className="border-t">
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-          <p className="text-center text-sm text-muted-foreground">
-            Built by Caio Silva &middot; Next.js &middot; Supabase &middot;
-            Stripe &middot; Tailwind CSS
-          </p>
-        </div>
+      {/* Footer */}
+      <footer className="border-t border-[hsl(var(--border))] py-8 text-center">
+        <p className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[hsl(var(--muted-foreground))]">
+          Built by Caio Silva &middot; Next.js &middot; Supabase &middot; Stripe
+          &middot; Redis &middot; Tailwind CSS
+        </p>
       </footer>
     </div>
   );

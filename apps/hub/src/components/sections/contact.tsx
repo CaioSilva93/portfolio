@@ -10,7 +10,7 @@ export function Contact() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="contact" className="py-24 px-6" ref={ref}>
+    <section id="contact" className="px-6 py-24" ref={ref}>
       <div className="mx-auto max-w-2xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -23,14 +23,14 @@ export function Contact() {
           <h2 className="mt-4 text-3xl font-bold text-[hsl(var(--foreground))] sm:text-4xl">
             Get In Touch
           </h2>
-          <p className="mt-4 text-[hsl(var(--muted-foreground))]">
+          <p className="mt-4 text-sm text-[hsl(var(--muted-foreground))]">
             I&apos;m currently looking for new opportunities. Whether you have a
             question or just want to say hi, my inbox is always open.
           </p>
 
           <a
             href="mailto:caio_9_3@hotmail.com"
-            className="mt-8 inline-flex items-center gap-2 rounded-lg bg-[hsl(var(--primary))] px-8 py-3 text-sm font-medium text-[hsl(var(--primary-foreground))] transition-opacity hover:opacity-90"
+            className="mt-8 inline-flex items-center gap-2 rounded-md bg-[hsl(var(--primary))] px-8 py-3 text-sm font-semibold text-[hsl(var(--primary-foreground))] transition-opacity hover:opacity-90"
           >
             <Mail className="h-4 w-4" />
             Say Hello

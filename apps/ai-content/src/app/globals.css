@@ -3,44 +3,44 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 240 10% 3.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 3.9%;
-  --primary: 186 100% 42%;
+  --background: 270 20% 98%;
+  --foreground: 270 15% 8%;
+  --card: 270 15% 96%;
+  --card-foreground: 270 15% 8%;
+  --primary: 280 90% 58%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 240 4.8% 95.9%;
-  --secondary-foreground: 240 5.9% 10%;
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
-  --accent: 240 4.8% 95.9%;
-  --accent-foreground: 240 5.9% 10%;
+  --secondary: 270 10% 92%;
+  --secondary-foreground: 270 10% 15%;
+  --muted: 270 10% 92%;
+  --muted-foreground: 270 6% 45%;
+  --accent: 270 10% 92%;
+  --accent-foreground: 270 10% 15%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
-  --border: 240 5.9% 90%;
-  --input: 240 5.9% 90%;
-  --ring: 186 100% 42%;
+  --border: 270 10% 88%;
+  --input: 270 10% 88%;
+  --ring: 280 90% 58%;
   --radius: 0.75rem;
 }
 
 .dark {
-  --background: 222 47% 6%;
-  --foreground: 210 40% 98%;
-  --card: 222 47% 8%;
-  --card-foreground: 210 40% 98%;
-  --primary: 186 100% 50%;
-  --primary-foreground: 222 47% 6%;
-  --secondary: 217 33% 17%;
-  --secondary-foreground: 210 40% 98%;
-  --muted: 217 33% 17%;
-  --muted-foreground: 215 20% 65%;
-  --accent: 217 33% 17%;
-  --accent-foreground: 210 40% 98%;
+  --background: 270 30% 4%;
+  --foreground: 270 10% 95%;
+  --card: 270 25% 8%;
+  --card-foreground: 270 10% 95%;
+  --primary: 280 90% 65%;
+  --primary-foreground: 270 30% 4%;
+  --secondary: 270 20% 13%;
+  --secondary-foreground: 270 10% 95%;
+  --muted: 270 20% 13%;
+  --muted-foreground: 270 10% 55%;
+  --accent: 270 20% 13%;
+  --accent-foreground: 270 10% 95%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
-  --border: 217 33% 17%;
-  --input: 217 33% 17%;
-  --ring: 186 100% 50%;
+  --border: 270 20% 16%;
+  --input: 270 20% 16%;
+  --ring: 280 90% 65%;
 }
 
 * {
@@ -50,4 +50,122 @@
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
+}
+
+.aurora-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  will-change: transform;
+}
+
+.aurora-blob-1 {
+  width: 700px;
+  height: 700px;
+  top: -100px;
+  left: -200px;
+  background: hsl(280, 90%, 50%);
+  opacity: 0.08;
+  animation: aurora-drift-1 12s ease-in-out infinite;
+}
+
+.aurora-blob-2 {
+  width: 600px;
+  height: 600px;
+  top: 200px;
+  right: -150px;
+  background: hsl(320, 80%, 50%);
+  opacity: 0.06;
+  animation: aurora-drift-2 15s ease-in-out infinite;
+}
+
+.aurora-blob-3 {
+  width: 500px;
+  height: 500px;
+  bottom: 100px;
+  left: 30%;
+  background: hsl(260, 85%, 55%);
+  opacity: 0.05;
+  animation: aurora-drift-3 18s ease-in-out infinite;
+}
+
+@keyframes aurora-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(80px, 50px) scale(1.1); }
+  66% { transform: translate(-40px, 80px) scale(0.95); }
+}
+
+@keyframes aurora-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-60px, -40px) scale(1.05); }
+  66% { transform: translate(50px, -60px) scale(0.9); }
+}
+
+@keyframes aurora-drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, -30px) scale(1.08); }
+}
+
+.glass-aurora {
+  background: hsla(270, 25%, 8%, 0.7);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  border: 1px solid hsla(280, 40%, 40%, 0.15);
+}
+
+.glass-card-aurora {
+  background: hsla(270, 25%, 10%, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid hsla(280, 40%, 50%, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glass-card-aurora:hover {
+  border-color: hsla(280, 90%, 65%, 0.25);
+  box-shadow: 0 0 30px hsla(280, 90%, 65%, 0.08);
+}
+
+.glow-aurora {
+  box-shadow:
+    0 0 60px hsla(280, 90%, 60%, 0.12),
+    0 0 120px hsla(320, 80%, 55%, 0.05);
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    hsl(280, 90%, 65%) 0%,
+    hsl(320, 80%, 60%) 25%,
+    hsl(280, 90%, 65%) 50%,
+    hsl(260, 85%, 70%) 75%,
+    hsl(280, 90%, 65%) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
 }
