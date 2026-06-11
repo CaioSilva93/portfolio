@@ -224,8 +224,8 @@ export default async function BoardsPage() {
               </h3>
               <p className="mt-1.5 text-sm text-muted-foreground">
                 AI code generation is powerful, but it consistently produces plausible-looking code with
-                subtle security holes and architectural mistakes. Across 3 review cycles, I identified
-                and fixed 3 critical security vulnerabilities, 6 architectural warnings, and multiple
+                subtle security holes and architectural mistakes. Across 2 review cycles, I identified
+                and fixed 4 critical security vulnerabilities, 12 architectural warnings, and multiple
                 convention issues &mdash; none of which the AI caught on its own. Effective AI-assisted
                 development requires someone who knows what to look for.
               </p>
