@@ -361,11 +361,11 @@ export default function Home() {
                   Why this matters
                 </h3>
                 <p className="mt-1.5 text-sm text-[hsl(var(--muted-foreground))]">
-                  This project went through 3 rounds of adversarial review before execution. The first
-                  round found 3 critical issues and 12 warnings. The second found 2 more critical issues
-                  and 8 warnings. Only after the third round returned 0 critical issues did implementation
-                  begin. In total, 5 critical vulnerabilities and 8 architectural warnings were caught
-                  and fixed at the design phase &mdash; before writing any code.
+                  AI code generation is powerful, but it consistently produces plausible-looking designs with
+                  subtle security holes and architectural mistakes. In this project alone, I identified
+                  and fixed 5 critical vulnerabilities and 8 architectural warnings across 3 rounds of
+                  review &mdash; none of which the AI caught on its own. Effective AI-assisted development
+                  requires someone who knows what to look for.
                 </p>
               </div>
             </div>
