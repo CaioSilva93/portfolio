@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { createClient } from "@/lib/supabase/server";
+import { createStaticClient } from "@/lib/supabase/static";
 import { getCached } from "@/lib/redis";
 import { StoreHeader } from "@/components/store-header";
 import {
@@ -12,13 +12,15 @@ import {
 import type { Product } from "@/lib/types";
 import Link from "next/link";
 
+export const revalidate = 60;
+
 const BelowFold = dynamic(() => import("@/components/landing/below-fold"), {
   ssr: true,
 });
 
 async function getFeaturedProducts(): Promise<Product[]> {
   return getCached("shop:products:featured", 60, async () => {
-    const supabase = await createClient();
+    const supabase = createStaticClient();
     const { data } = await supabase
       .from("shop_products")
       .select("*, category:shop_categories(id, name, slug)")
@@ -29,21 +31,12 @@ async function getFeaturedProducts(): Promise<Product[]> {
   });
 }
 
-async function getUser() {
-  const supabase = await createClient();
-  const { data } = await supabase.auth.getUser();
-  return data.user;
-}
-
 export default async function HomePage() {
-  const [products, user] = await Promise.all([
-    getFeaturedProducts(),
-    getUser(),
-  ]);
+  const products = await getFeaturedProducts();
 
   return (
     <div className="min-h-screen">
-      <StoreHeader user={user} />
+      <StoreHeader />
 
       <main>
       {/* Hero */}

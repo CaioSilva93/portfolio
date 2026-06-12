@@ -15,17 +15,31 @@ import { Separator } from "@/components/ui/separator";
 import { CartSheet } from "@/components/cart-sheet";
 import { useCart } from "@/hooks/use-cart";
 import { useState, useEffect } from "react";
+import { createBrowserClient } from "@supabase/ssr";
 
 interface StoreHeaderProps {
   user?: { email?: string } | null;
 }
 
-export function StoreHeader({ user }: StoreHeaderProps) {
+export function StoreHeader({ user: initialUser }: StoreHeaderProps) {
   const { theme, setTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [user, setUser] = useState(initialUser ?? null);
   const { cartItemCount } = useCart();
+
+  useEffect(() => {
+    if (!initialUser) {
+      const supabase = createBrowserClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+      );
+      supabase.auth.getUser().then(({ data }) => {
+        setUser(data.user ? { email: data.user.email ?? undefined } : null);
+      });
+    }
+  }, [initialUser]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);

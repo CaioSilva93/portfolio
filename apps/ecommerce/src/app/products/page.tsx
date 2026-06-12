@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createStaticClient } from "@/lib/supabase/static";
 import { getCached } from "@/lib/redis";
 import { productFilterSchema } from "@/lib/validators";
 import { StoreHeader } from "@/components/store-header";
@@ -9,6 +9,8 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Product, Category } from "@/lib/types";
 
+export const revalidate = 60;
+
 const PRODUCTS_PER_PAGE = 12;
 
 interface ProductsPageProps {
@@ -17,7 +19,7 @@ interface ProductsPageProps {
 
 async function getCategories(): Promise<Category[]> {
   return getCached("shop:categories", 300, async () => {
-    const supabase = await createClient();
+    const supabase = createStaticClient();
     const { data } = await supabase
       .from("shop_categories")
       .select("*")
@@ -36,7 +38,7 @@ async function getProducts(params: {
   const cacheKey = `shop:products:${category}:${sort}:${search}:${page}`;
 
   return getCached(cacheKey, 60, async () => {
-    const supabase = await createClient();
+    const supabase = createStaticClient();
     const from = (page - 1) * PRODUCTS_PER_PAGE;
     const to = from + PRODUCTS_PER_PAGE - 1;
 
@@ -83,12 +85,6 @@ async function getProducts(params: {
   });
 }
 
-async function getUser() {
-  const supabase = await createClient();
-  const { data } = await supabase.auth.getUser();
-  return data.user;
-}
-
 export default async function ProductsPage({ searchParams }: ProductsPageProps) {
   const rawParams = await searchParams;
   const params = productFilterSchema.parse({
@@ -98,10 +94,9 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
     page: rawParams.page,
   });
 
-  const [{ products, total }, categories, user] = await Promise.all([
+  const [{ products, total }, categories] = await Promise.all([
     getProducts(params),
     getCategories(),
-    getUser(),
   ]);
 
   const totalPages = Math.ceil(total / PRODUCTS_PER_PAGE);
@@ -119,7 +114,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
 
   return (
     <div className="min-h-screen">
-      <StoreHeader user={user} />
+      <StoreHeader />
 
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-8">
